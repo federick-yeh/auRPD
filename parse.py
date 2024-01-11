@@ -31,6 +31,8 @@ def parse_songs(songs_uri):
 		csv_reader = csv.reader(csv_file)
 		next(csv_reader) # skip header
 		for row in csv_reader:
+			if any(not col for col in row):
+				continue
 			songs.append(Song(row[0], row[1], row[2], row[3], row[4]))
 
 	return songs
